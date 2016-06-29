@@ -45,7 +45,7 @@ setup(
         ],
     },
     tests_require=tests_require,
-    test_suite='test_flake8_future_import',
+    test_suite='test_flake8_future_import.Flake8TestCase',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Environment :: Console',

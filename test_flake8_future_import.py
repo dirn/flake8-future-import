@@ -265,11 +265,13 @@ class Flake8TestCase(TestCaseBase):
                 raise unittest.SkipTest('The plugin is not installed and '
                                         'TEST_FLAKE8_INSTALL not set')
         # Determine version of installed flake8 package
-        for dist in pip.utils.get_installed_distributions():
+        for dist in pip.utils.get_installed_distributions(False):
             if dist.key == 'flake8':
                 version = StrictVersion(dist.version)
                 cls.expected_offset = 0 if version.version[0] >= 3 else 1
                 break
+        else:
+            raise ValueError('Unable to find Flake8 installation')
         super(Flake8TestCase, cls).setUpClass()
 
     @classmethod
